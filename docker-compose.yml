@@ -15,8 +15,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.snapdrop-server.rule=Host(`snapdrop.kbauer.at`, `sd.kbauer.at`) && PathPrefix(`/server`)"
       - "traefik.http.services.snapdrop-server.loadbalancer.server.port=3000"
-      - "traefik.http.routers.snapdrop-server.tls=true"
-      - "traefik.http.routers.snapdrop-server.tls.certresolver=myresolver"
   client:
     image: nginx:alpine
     volumes:
@@ -28,8 +26,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.snapdrop-client.rule=Host(`snapdrop.kbauer.at`, `sd.kbauer.at`) && !PathPrefix(`/server`)"
       - "traefik.http.services.snapdrop-client.loadbalancer.server.port=80"
-      - "traefik.http.routers.snapdrop-client.tls=true"
-      - "traefik.http.routers.snapdrop-client.tls.certresolver=myresolver"
 
 networks:
   https_net:
